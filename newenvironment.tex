@@ -1,0 +1,46 @@
+%-------------------------------------------------------------------------------
+% newenvironment.tex
+
+\newcommand{\term}[1]{\textbf{#1}}
+
+\newcounter{TheoremCounter}
+\newenvironment{theorem}{%
+    \stepcounter{TheoremCounter}%
+    \textsc{Theorem \theTheoremCounter}: %
+}{\par}
+
+\newenvironment{conjecture}{%
+    \stepcounter{TheoremCounter}%
+    \textsc{Conjecture \theTheoremCounter}: %
+}{\par}
+
+\newenvironment{lemma}{%
+    \stepcounter{TheoremCounter}%
+    \textsc{Lemma \theTheoremCounter}: %
+}{\par}
+
+\newenvironment{corollary}{%
+    \stepcounter{TheoremCounter}%
+    \textsc{Corollary \theTheoremCounter}: %
+}{\par}
+
+\newenvironment{exercise}[1]{%
+    \vspace{18pt}%
+    \hrule%
+    \begin{center}%
+    \begin{minipage}[c][][c]{0.875\textwidth}%
+    \textbf{\textsection\,{#1}\;}%
+}{%
+    \end{minipage}%
+    \end{center}\par%
+}
+
+\newenvironment{solution}{%
+    \vspace{-12pt}%
+    \begin{center}%
+    \begin{minipage}[c][][c]{0.8\textwidth}%
+}{%
+    \end{minipage}%
+    \end{center}\par%
+}
+
