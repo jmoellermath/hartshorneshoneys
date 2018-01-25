@@ -1,6 +1,6 @@
 MAIN = main
 OBJS = $(wildcard ./*.tex)
-JOB = Notes
+JOB = Solutions
 COMPILER = pdflatex
 OPTIONS = -file-line-error -halt-on-error -jobname $(JOB)
 
