@@ -1,0 +1,103 @@
+%-------------------------------------------------------------------------------
+% chapter2/section1/main.tex
+
+\begin{exercise}{Exercise 1.3 (a)}
+    Let $\phi \colon \FSheaf \to \GSheaf$ be a morphism of sheaves on $X$.
+    Show that $\phi$ is surjective if and only if 
+    the following condition holds: for ever open set $\open \subseteq X$,
+    and for every $s \in \GSheaf(\open)$, 
+    there is a covering $\{\open_i\}$ of $\open$,
+    and there are elements $t_i \in \FSheaf(\open_i)$
+    such that $\phi(t_i) = s|_{U_i}$ for all $i$.
+\end{exercise}
+\begin{solution}
+    Fix some open $\open \subseteq X$ 
+    and some section $s \in \GSheaf(\open)$.
+    If $\phi \colon \FSheaf \to \GSheaf$ is surjective,
+    the image sheaf $\Image \phi$ is equal to $\GSheaf$,
+    and we can consider $s$ as being in $\Image\phi(\open)$.
+    Let $\HSheaf$ denote the presheaf image of $\phi$,
+    so $\HSheaf^+$ is $\Image\phi$.
+    Since $s \in \Image\phi(\open)$, 
+    for any point $P_i \in \open$ we have an neighborhood $V_i$ 
+    where $P_i \in V_i \subset \open$,
+    and we have a section $s_i \in \HSheaf(V_i)$ such that
+    for any point $Q \in V_i$ the germ $(s_i)_Q = s(Q)$.
+    Since $\HSheaf$ is the presheaf image of $\phi$, 
+    there is some $t_i \in \FSheaf(V_i)$ that maps to $s_i$,
+    and we have $(\phi(t_i))_Q = s_i(Q) = s_i|_{V_i}(Q)$.
+    More succinctly, $\phi(t_i) = s_i|_{V_i}$, 
+    and so the collection of all $\{V_i\}_{P_i \in \open}$ that covers $U$ 
+    and the corresponding sections $t_i \in \FSheaf(V_i)$ 
+    are exactly what we were looking for.
+    
+    Conversely, we'll show that $\phi$ is surjective 
+    by showing the induced map on stalks is surjective (Exercise 1.2).
+    Take $P \in X$, and some $\langle \open, s \rangle \in \GSheaf_P$.
+    For this open set $\open$ take $V$ to be the element
+    of the open cover we are given for $\open$ that contains $P$. 
+    Then there is some $t \in \FSheaf(V)$ such that $\phi(t) = s|_V$.
+    Since $\langle V, s \rangle = \langle \open, s \rangle$,
+    the germ of $t$ in $\FSheaf_P$ 
+    will map to $\langle \open, s \rangle \in \GSheaf_P$.
+\end{solution}
+
+\begin{exercise}{Exercise 1.3 (b)}
+    Give an example of a surjective morphism of sheaves 
+    $\phi \colon \FSheaf \to \GSheaf$ and an open set $U$ such that
+    $\phi(\open) \colon \FSheaf(\open) \to \GSheaf(\open)$ is not surjective.
+\end{exercise}
+\begin{solution}
+    Let $\FSheaf$ and $\GSheaf$ each be the sheaf of holomorphic functions 
+    on the punctured complex plane $\Comps^\ast$,
+    and let $\phi$ be the map that sends $f \in \FSheaf(\open)$
+    to $\exp(f) \in \GSheaf(\open)$.
+    The induced map on global sections
+    $\FSheaf(\Comps^\ast) \to \GSheaf(\Comps^\ast)$ 
+    is not surjective: nothing maps to the identity.
+    But any point $P \in \Comps^\ast$ is contained in a simply connected 
+    open set where we can define a branch of the complex logarithm.
+    Maps in $\Image \phi$ are defined 
+    by their behavior at the stalk at each point,
+    so we are able to define maps in $(\Image \phi)(\open)$
+    that act like a complex logarithm on $\open$ 
+    for any open set $\open$ by gluing together collections 
+    of locally defined branches of the complex logarithm
+    defined around each point $P \in \open$.
+    The existence of these maps give us that $\Image \phi = \GSheaf$.
+\end{solution}
+
+\begin{exercise}{Exercise 1.18}
+    \term{Adjoint Property of $\inv{f}$}. 
+    Let $f \colon X \to Y$ be a continuous map of topological spaces.
+    Show that for any sheaf $\FSheaf$ on $X$ 
+    there is a natural map $\inv{f}f_\ast\FSheaf \to \FSheaf$,
+    and for any sheaf $\GSheaf$ on $Y$
+    there is a natural map $\GSheaf \to f_\ast\inv{f}\GSheaf$.
+    Use these maps to show that there is a natural bijection of sets,
+    for any sheaves $\FSheaf$ on $X$ and $\GSheaf$ on $Y$,
+    \begin{equation*}
+        \Hom_X(\inv{f}\GSheaf,\FSheaf) = \Hom_Y(\GSheaf,f_\ast\FSheaf)\,.
+    \end{equation*}
+    Hence we say that $\inv{f}$ is a \term{left adjoint} of $f_\ast$,
+    and that $f_\ast$ is a \term{right adjoint} of $\inv{f}$.
+\end{exercise}
+\begin{solution}
+    Let $\HSheaf$ denote the presheaf on $X$ under which
+    $\open \mapsto \varinjlim_{V \supset f(\open)} f_\ast\FSheaf(V)$.
+    So $\HSheaf$ the presheaf to which 
+    $\inv{f}f_\ast\FSheaf$ is associated.
+    Now $f_\ast\FSheaf(V)$ is just $\FSheaf(\inv{f}(V))$,
+    so for each $\inv{f}(V) \supset \open$ 
+    we get an induced restriction map 
+    $\rho_V \colon \FSheaf(\inv{f}(V)) \to \FSheaf(\open)$.
+    Since $\HSheaf(\open)$ is the colimit over all $\FSheaf(\inv{f}(V))$,
+    and we have a morphism $\rho_V$ for each $\inv{f}(V) \supset \open$
+    by the univeral property of colimits we get a unique map
+    $\HSheaf(\open) \to \FSheaf(\open)$,
+    which gives us a presheaf morphism $\HSheaf \to \FSheaf$.
+    Then by sheafifying $\HSheaf$ we get a unique morphism of sheaves 
+    $\inv{f}f_\ast\FSheaf \to \FSheaf$.
+
+    ...
+\end{solution}
